@@ -1,5 +1,5 @@
 {
-  "name": "app_2408",
+  "name": "financial-nlp-box",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -30,7 +30,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:financial": "REACT_APP_DOMAIN=financial react-scripts start",
+    "build:financial": "REACT_APP_DOMAIN=financial react-scripts build"
   },
   "eslintConfig": {
     "extends": [
