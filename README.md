@@ -29,6 +29,8 @@
 1. 克隆仓库
 2. 安装依赖：
    ```bash
+   cd frontend
+   nvm use v22.14.0
    npm install
    ```
 3. 运行开发服务器：
@@ -36,7 +38,12 @@
    npm start
    ```
 4. 在浏览器中打开 [http://localhost:3000](http://localhost:3000)
-
+5. 后端依赖
+```bash
+conda create -n rag-project02-medical-nlp-box python=3.11
+conda activate rag-project02-medical-nlp-box
+pip install -r requirements_mac\(no\ GPU\).txt
+```
 ## 项目结构
 
 ```
@@ -80,3 +87,32 @@ medical-website/
 ## 许可证
 
 本项目采用 MIT 许可证 - 查看 LICENSE 文件了解详情
+
+
+#### 使用本地下载的 HuggingFace 模型（可选步骤）
+
+* 下载 HuggingFace 模型，以 `BAAI/bge-m3` 为例：
+
+```shell
+# 创建 HF_MODEL_PATH 目录
+mkdir -p /Users/zhangwufei/hf_model_path
+export HF_MODEL_PATH="/Users/zhangwufei/hf_model_path"
+
+cd $HF_MODEL_PATH
+
+# 获取 HuggingFace 模型下载脚本
+wget https://hf-mirror.com/hfd/hfd.sh
+chmod u+x hfd.sh
+
+# 下载 sentence-transformers/all-MiniLM-L6-v2 模型文件
+mkdir -p BAAI/bge-m3
+# 建议上午下载，上午网速较快（10MB/s左右）。大概几分钟左右会被限速（近乎停止），可以终止命令，再重新执行，又可以变成高速下载
+./hfd.sh BAAI/bge-m3 --tool wget -x 4 -j 1 --local-dir BAAI/bge-m3
+```
+
+* 设置 HuggingFace 本地模型文件目录 `HF_MODEL_PATH` 环境变量：
+
+```shell
+export HF_MODEL_PATH="/Users/zhangwufei/hf_model_path"
+export HF_ENDPOINT=https://hf-mirror.com
+```
